@@ -17,6 +17,12 @@ class Home : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        homeFragment = HomeFragment.newInstance()
+        publihsFragment = PublishFragment.newInstance()
+        profileFragment = ProfileFragment.newInstance()
+
+        showFragment(homeFragment)
+
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             if(menuItem.itemId == R.id.homeBtn){
                 showFragment(homeFragment)
