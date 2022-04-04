@@ -30,7 +30,8 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/f_logo_rgb_white_100" />
+            app:srcCompat="@drawable/f_logo_rgb_white_100"
+            android:contentDescription="TODO" />
 
         <EditText
             android:id="@+id/emailText"
@@ -51,7 +52,8 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            android:importantForAutofill="no" />
 
         <EditText
             android:id="@+id/passwordText"
@@ -68,11 +70,12 @@
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="aplicacionesmoviles"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailText"
-            tools:text="aplicacionesmoviles" />
+            app:layout_constraintTop_toBottomOf="@+id/emailText" />
 
         <Button
             android:id="@+id/loginBtn"
