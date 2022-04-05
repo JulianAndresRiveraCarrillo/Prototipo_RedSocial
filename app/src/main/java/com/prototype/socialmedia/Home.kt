@@ -1,7 +1,10 @@
 package com.prototype.socialmedia
 
+import android.Manifest
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.prototype.socialmedia.databinding.ActivityHomeBinding
 
@@ -24,15 +27,16 @@ class Home : AppCompatActivity() {
         showFragment(homeFragment)
 
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
-            if(menuItem.itemId == R.id.homeBtn){
+            if (menuItem.itemId == R.id.homeBtn) {
                 showFragment(homeFragment)
-            }else if(menuItem.itemId == R.id.publishBtn){
+            } else if (menuItem.itemId == R.id.publishBtn) {
                 showFragment(publihsFragment)
-            }else if(menuItem.itemId == R.id.profileBtn){
+            } else if (menuItem.itemId == R.id.profileBtn) {
                 showFragment(profileFragment)
             }
             true
         }
+
     }
 
     fun showFragment(fragment : Fragment){

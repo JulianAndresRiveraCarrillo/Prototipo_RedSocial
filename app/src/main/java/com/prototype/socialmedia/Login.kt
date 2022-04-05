@@ -1,5 +1,6 @@
 package com.prototype.socialmedia
 
+import android.Manifest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -40,5 +41,7 @@ class Login : AppCompatActivity() {
                 Toast.makeText(this, "Correo o Contraseña Incorrecta", Toast.LENGTH_SHORT).show()
             }
         }
+
+
     }
 }

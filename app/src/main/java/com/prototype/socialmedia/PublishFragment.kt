@@ -1,5 +1,6 @@
 package com.prototype.socialmedia
 
+import android.Manifest
 import android.R
 import android.graphics.Color
 import android.graphics.Typeface
@@ -12,7 +13,6 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.prototype.socialmedia.databinding.FragmentPublishBinding
-
 
 class PublishFragment : Fragment() {
 
@@ -70,7 +70,6 @@ class PublishFragment : Fragment() {
             }
 
         }
-
         return binding.root
     }
 
