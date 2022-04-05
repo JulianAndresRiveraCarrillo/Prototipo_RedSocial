@@ -25,6 +25,9 @@ class PublishFragment : Fragment() {
     private var _binding : FragmentPublishBinding? = null
     private val binding get() = _binding!!
 
+    //Listener
+    var listener : OnNewPostListener? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -87,6 +90,14 @@ class PublishFragment : Fragment() {
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             launcher.launch(intent)
         }
+
+        binding.publishButton.setOnClickListener {
+            //val newPost : Post = Post.newInstance(binding.imageView5.drawable,)
+/*
+            listener?.let {
+                it.onNewPost(newPost)
+            }*/
+        }
         return binding.root
     }
 
@@ -145,5 +156,14 @@ class PublishFragment : Fragment() {
             val ph = rs.data?.data!!
             binding.imageView5.setImageURI(ph) //imageview
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    interface OnNewPostListener{
+        fun onNewPost(post : Post)
     }
 }
