@@ -1,16 +1,22 @@
 package com.prototype.socialmedia
 
-import android.Manifest
-import android.R
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.prototype.socialmedia.databinding.FragmentPublishBinding
 
@@ -70,11 +76,74 @@ class PublishFragment : Fragment() {
             }
 
         }
+
+        binding.galleryBtn.setOnClickListener {
+            requestPermission()
+        }
+
+        val launcher = registerForActivityResult(StartActivityForResult(), ::onResult)
+
+        binding.cameraBtn.setOnClickListener {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            launcher.launch(intent)
+        }
         return binding.root
+    }
+
+    fun onResult(result : ActivityResult){
+        val bitmap = result.data?.extras?.get("data") as Bitmap
+        binding.imageView5.setImageBitmap(bitmap)
     }
 
     companion object {
         @JvmStatic
         fun newInstance() = PublishFragment()
+    }
+
+    private fun selectPhoto(){
+        val intent= Intent(Intent.ACTION_GET_CONTENT)
+        intent.type="image/*"
+        startForActivityGallery.launch(intent)
+    }
+
+    private val requestPermissionLauncher=registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ){granted->
+        if(granted){
+            selectPhoto()
+        }
+    }
+
+    private fun requestPermission() {
+        when{
+            ContextCompat.checkSelfPermission(requireActivity().applicationContext,android.Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED->{
+                selectPhoto()
+            }
+            else->{
+                requestPermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+        }
+        selectPhoto()
+        /*if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            when{
+                ContextCompat.checkSelfPermission(requireActivity().applicationContext,android.Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED->{
+                    selectPhoto()
+                }
+                else->{
+                    requestPermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                }
+            }
+        }else{
+            selectPhoto()
+        }*/
+    }
+
+    private val startForActivityGallery=registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){rs->
+        if(rs.resultCode== Activity.RESULT_OK){
+            val ph = rs.data?.data!!
+            binding.imageView5.setImageURI(ph) //imageview
+        }
     }
 }
