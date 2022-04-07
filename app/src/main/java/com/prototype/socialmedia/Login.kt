@@ -10,9 +10,8 @@ import com.prototype.socialmedia.databinding.ActivityLoginBinding
 class Login : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
 
-    val email1 : String = "alfa@gmail.com"
-    val email2 : String = "beta@gmail.com"
-    val password : String = "aplicacionesmoviles"
+    private lateinit var user1 : User
+    private lateinit var user2 : User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,15 +22,18 @@ class Login : AppCompatActivity() {
             var email = binding.emailText.text.toString()
             var pass = binding.passwordText.text.toString()
 
-            if(email.equals(email1)){
-                if (pass.equals(password)){
+            user1 = User("alfa@gmail.com", "aplicacionesmoviles")
+            user2 = User("beta@gmail.com", "aplicacionesmoviles")
+
+            if(email.equals(user1.email)){
+                if (pass.equals(user1.password)){
                     val intent = Intent(applicationContext, Home :: class.java).apply{}
                     startActivity(intent)
                 }else{
                     Toast.makeText(this, "Correo o Contraseña Incorrecta", Toast.LENGTH_SHORT).show()
                 }
-            }else if(email.equals(email2)){
-                if (pass.equals(password)){
+            }else if(email.equals(user2.email)){
+                if (pass.equals(user2.password)){
                     val intent = Intent(applicationContext, Home :: class.java).apply{}
                     startActivity(intent)
                 }else{
