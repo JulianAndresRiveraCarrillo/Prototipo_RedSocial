@@ -93,6 +93,7 @@
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/black"
+            android:textColorHint="@color/gray"
             android:textSize="24sp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"

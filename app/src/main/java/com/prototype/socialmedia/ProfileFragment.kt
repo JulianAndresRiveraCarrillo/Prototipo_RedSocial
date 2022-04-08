@@ -83,18 +83,7 @@ class ProfileFragment : Fragment() {
             }
         }
         selectPhoto()
-        /*if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-            when{
-                ContextCompat.checkSelfPermission(requireActivity().applicationContext,android.Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED->{
-                    selectPhoto()
-                }
-                else->{
-                    requestPermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                }
-            }
-        }else{
-            selectPhoto()
-        }*/
+
     }
 
     private val startForActivityGallery=registerForActivityResult(

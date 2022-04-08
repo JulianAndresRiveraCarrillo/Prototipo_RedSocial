@@ -1,11 +1,11 @@
 package com.prototype.socialmedia
 
-import android.Manifest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.prototype.socialmedia.databinding.ActivityLoginBinding
+import com.prototype.socialmedia.model.User
 
 class Login : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
@@ -22,8 +22,8 @@ class Login : AppCompatActivity() {
             var email = binding.emailText.text.toString()
             var pass = binding.passwordText.text.toString()
 
-            user1 = User("alfa@gmail.com", "aplicacionesmoviles")
-            user2 = User("beta@gmail.com", "aplicacionesmoviles")
+            user1 = User("Pepito Perez","alfa@gmail.com", "aplicacionesmoviles")
+            user2 = User("Peter Federico","beta@gmail.com", "aplicacionesmoviles")
 
             if(email.equals(user1.email)){
                 if (pass.equals(user1.password)){

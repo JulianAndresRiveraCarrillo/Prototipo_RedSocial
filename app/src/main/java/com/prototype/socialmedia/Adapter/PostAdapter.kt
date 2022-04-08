@@ -1,12 +1,12 @@
-package com.prototype.socialmedia
+package com.prototype.socialmedia.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.prototype.socialmedia.model.Post
+import com.prototype.socialmedia.R
 
-class PostAdapter : RecyclerView.Adapter<ViewHolder>(){
-
-    private val posts = ArrayList<Post>()
+class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -16,16 +16,11 @@ class PostAdapter : RecyclerView.Adapter<ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val post = posts[position]
-
-        holder.userText.text = post.user
-        holder.locationText.text = post.location
-        holder.descriptionText.text = post.description
-        holder.postView.setImageBitmap(post.img)
+        val itemPost = posts[position]
+        holder.render(itemPost)
     }
 
     override fun getItemCount(): Int {
         return posts.size
     }
-
 }

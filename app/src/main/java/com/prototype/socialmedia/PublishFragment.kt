@@ -19,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts.StartActivityFo
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.prototype.socialmedia.databinding.FragmentPublishBinding
+import com.prototype.socialmedia.model.Post
 
 class PublishFragment : Fragment() {
 
